@@ -89,7 +89,7 @@ class sdr():
 	
 
 if __name__ == "__main__":
-	data_name = 'car'
+	data_name = 'abalone_raw'
 	X = np.loadtxt('data/' + data_name + '.csv', delimiter=',', dtype=np.float64)			
 	Y = np.loadtxt('data/' + data_name + '_label.csv', delimiter=',', dtype=np.int32)			
 	X_test = np.loadtxt('data/' + data_name + '_test.csv', delimiter=',', dtype=np.float64)			
