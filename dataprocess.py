@@ -17,10 +17,10 @@ gen_name = 'iris_raw'
 
 dp = np.genfromtxt('./raw data/'+get_name,delimiter=',')
 test_size = 20
-xtrain  = pd.DataFrame(dp[test_size:,:-1])
-xtest   = pd.DataFrame(dp[:test_size,:-1])
-ytrain  = pd.DataFrame(dp[test_size:,-1])
-ytest   = pd.DataFrame(dp[:test_size,-1])
+xtrain  = pd.DataFrame(dp[test_size:    ,:-1])
+xtest   = pd.DataFrame(dp[:test_size    ,:-1])
+ytrain  = pd.DataFrame(dp[test_size:    ,-1 ])
+ytest   = pd.DataFrame(dp[:test_size    ,-1 ])
 xtrain  .to_csv('./raw data/'+gen_name+'.csv'            ,sep=',',index=False,header=False)
 xtest   .to_csv('./raw data/'+gen_name+'_test.csv'       ,sep=',',index=False,header=False)
 ytrain  .to_csv('./raw data/'+gen_name+'_label.csv'      ,sep=',',index=False,header=False)
