@@ -9,12 +9,14 @@ import pandas as pd
 import numpy as np
 import math
 import csv
+from sklearn.svm import SVC
+from sklearn.metrics import classification_report, confusion_matrix
 
-get_name = 'abalone.DATA'
-gen_name = 'abalone_raw'
+get_name = 'iris.csv'
+gen_name = 'iris_raw'
 
-dp = np.genfromtxt('./raw data/'+get_name,delimiter='\t')
-test_size = 120
+dp = np.genfromtxt('./raw data/'+get_name,delimiter=',')
+test_size = 20
 xtrain  = pd.DataFrame(dp[test_size:,:-1])
 xtest   = pd.DataFrame(dp[:test_size,:-1])
 ytrain  = pd.DataFrame(dp[test_size:,-1])
@@ -30,8 +32,7 @@ ytest   .to_csv('./raw data/'+gen_name+'_label_test.csv' ,sep=',',index=False,he
 
 
 
-from sklearn.svm import SVC
-from sklearn.metrics import classification_report, confusion_matrix
+
 
 def acc(y_test,y_pred):
     return "-----Accuracy: "+str((y_test==y_pred).sum()/len(y_test))
@@ -48,4 +49,4 @@ def runsvmpred(data_name):
     print(classification_report(y_test,y_pred))
     print(acc(y_test,y_pred))
 
-runsvmpred('abalone_norm')
+runsvmpred('iris_raw')
