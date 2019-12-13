@@ -57,7 +57,7 @@ class sdr():
 		#	adjustable variables
 		self.db['convergence_method'] = 'use_eigen_values'	# use_eigen_values is faster but gradient might not = 0 and use_W is slower but more accurate with gradient = 0
 		self.db['algorithm'] = linear_supv_dim_reduction(self.db)
-		self.db['kernel'] = gaussian(self.db)				# try : gaussian, polynomial, squared, linear
+		self.db['kernel'] = squared(self.db)				# try : gaussian, polynomial, squared, linear
 		self.db['optimizer'] = ism(self.db)
 
 
