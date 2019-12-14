@@ -115,3 +115,4 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+data/reddit_tfidf_matrix.csv

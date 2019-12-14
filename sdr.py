@@ -89,39 +89,39 @@ class sdr():
 	
 
 if __name__ == "__main__":
-	data_name = 'reddit_tfidf_matrix'
-	X = np.loadtxt('raw data/' + data_name + '.csv', delimiter=',', dtype=np.float64)			
-	Y = np.loadtxt('raw data/' + data_name + '_label.csv', delimiter=',', dtype=np.int32)			
-	X_test = np.loadtxt('raw data/' + data_name + '_test.csv', delimiter=',', dtype=np.float64)			
-	Y_test = np.loadtxt('raw data/' + data_name + '_label_test.csv', delimiter=',', dtype=np.int32)			
-
-
-	X = preprocessing.scale(X)
-	X_test = preprocessing.scale(X_test)
-
-	s = sdr(X,Y)	#q if not set, it is automatically set to 80% of data variance by PCA
-
-	start_time = time.time() 
-	s.train()
-	ΔTime = time.time() - start_time
-
-
-	W = s.get_projection_matrix()
-	Xsmall = s.get_reduced_dim_data(X)
-
-	[out_allocation, training_acc, svm_object] = use_svm(Xsmall, Y, k='rbf')
-	test_acc = apply_svm(X_test.dot(W), Y_test, svm_object)
-
-	print('Using : %s '%type(s.db['kernel']).__name__)
-	print('\tTrain Time : %.3f'%(ΔTime))
-	print('\tDataset : %s'%(data_name))
-	print('\tInput dimension : %d x %d'%(X.shape[0],X.shape[1]))
-	print('\tOutput dimension : %d x %d'%(Xsmall.shape[0],Xsmall.shape[1]))
-	print('\tInitial HSIC : %.4f'%s.db['init_HSIC'])
-	print('\tFinal HSIC : %.4f'%s.db['final_HSIC'])
-	print('\tTraining Accuracy : %.4f'%training_acc)
-	print('\tTest Accuracy : %.4f'%test_acc)
-
-
-	del s
+    #data_name = 'reddit_tfidf_matrix'
+    data_name = 'iris_raw'
+    X = np.loadtxt('data/' + data_name + '.csv', delimiter=',', dtype=np.float64)			
+    Y = np.loadtxt('data/' + data_name + '_label.csv', delimiter=',', dtype=np.int32)			
+    X_test = np.loadtxt('data/' + data_name + '_test.csv', delimiter=',', dtype=np.float64)			
+    Y_test = np.loadtxt('data/' + data_name + '_label_test.csv', delimiter=',', dtype=np.int32)			
+    
+    
+    X = preprocessing.scale(X)
+    X_test = preprocessing.scale(X_test)
+   
+    s = sdr(X,Y)	#q if not set, it is automatically set to 80% of data variance by PCA
+   
+    start_time = time.time() 
+    s.train()
+    ΔTime = time.time() - start_time
+   
+   
+    W = s.get_projection_matrix()
+    Xsmall = s.get_reduced_dim_data(X)
+   
+    [out_allocation, training_acc, svm_object] = use_svm(Xsmall, Y, k='rbf')
+    test_acc = apply_svm(X_test.dot(W), Y_test, svm_object)
+   
+    print('Using : %s '%type(s.db['kernel']).__name__)
+    print('\tTrain Time : %.3f'%(ΔTime))
+    print('\tDataset : %s'%(data_name))
+    print('\tInput dimension : %d x %d'%(X.shape[0],X.shape[1]))
+    print('\tOutput dimension : %d x %d'%(Xsmall.shape[0],Xsmall.shape[1]))
+    print('\tInitial HSIC : %.4f'%s.db['init_HSIC'])
+    print('\tFinal HSIC : %.4f'%s.db['final_HSIC'])
+    print('\tTraining Accuracy : %.4f'%training_acc)
+    print('\tTest Accuracy : %.4f'%test_acc)
+    
+    del s
 
